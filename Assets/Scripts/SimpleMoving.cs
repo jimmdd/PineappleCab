@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimpleMoving : MonoBehaviour {
 
 	public float MoveSpeed = 10;
-	public float delay = 10f;
+	public float delay = 20f;
 
 	void Update () {
 		transform.Translate (Vector3.right*MoveSpeed*Time.deltaTime);

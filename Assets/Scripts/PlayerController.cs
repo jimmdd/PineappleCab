@@ -4,13 +4,15 @@ public class PlayerController : MonoBehaviour
 {
 	public int MoveSpeed = 10;
 	public float laneChange = 5;
-	public Transform camera;
+	public Transform carCamera;
 	public int cameraAngle = 90;
 	private bool isIntersec = false;//determin if get into the intersection zone
 	private int turn_Count = 0;
+	private Vector3 axis;
 
 	void Update()
 	{
+		axis = transform.forward;
 		//allow player to move forward/backward
 		float MoveForward = Input.GetAxis ("Vertical") * MoveSpeed * Time.deltaTime;
 		transform.Translate (Vector3.right * MoveForward);
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
 				transform.Translate (Vector3.down * laneChange);
 			else if (turn_Count == 0) {
 				transform.RotateAround (transform.position, Vector3.up, -90);
+				carCamera.GetComponent<CameraController> ().cameraRotation (-90);
 				turn_Count++;
 			}
 		}
@@ -29,7 +32,7 @@ public class PlayerController : MonoBehaviour
 				transform.Translate (Vector3.up * laneChange);
 			else if (turn_Count == 0) {
 				transform.RotateAround (transform.position, Vector3.up, 90);
-				camera.transform.RotateAround (transform.position, Vector3.up, 90);
+				carCamera.GetComponent<CameraController> ().cameraRotation (90);
 				turn_Count++;
 			}
 		}
