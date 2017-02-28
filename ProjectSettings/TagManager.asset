@@ -6,6 +6,9 @@ TagManager:
   tags:
   - intersec
   - road
+  - left_sign
+  - up_sign
+  - right_sign
   layers:
   - Default
   - TransparentFX
