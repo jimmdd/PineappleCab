@@ -4,9 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
+	public void Start(){
+		PlayerPrefs.SetInt ("lastScene", SceneManager.GetActiveScene ().buildIndex);
+	}
+
+	public void Update(){
+		if (Input.GetKeyDown(KeyCode.Escape)){
+			
+			//TO-DO PAUSE SCENE and pause menu
+
+			}
+		}
 
 	public void StartGame(){
-		SceneManager.LoadScene ("Tutorial");
+		LoadScene("Tutorial");
 }
 	public void QuitGame(){
 		//If we are running in a standalone build of the game
@@ -22,8 +33,22 @@ public class GameManager : MonoBehaviour {
 		#endif
 	}
 	public void RetryGame(){
+//		Debug.Log("last scene " + PlayerPrefs.GetString("last"));
+//		Debug.Log ("Scene name: " + SceneManager.GetActiveScene ().name);
+		SceneManager.LoadScene (PlayerPrefs.GetString ("last"));
 	}
 	public void BackToMenu(){
 		SceneManager.LoadScene ("Start");
+	}
+	public void LoadScene(string name){
+		PlayerPrefs.SetInt ("lastScene", SceneManager.GetActiveScene ().buildIndex + 1);
+		PlayerPrefs.SetString ("last", SceneManager.GetActiveScene ().name);
+//		Debug.Log("last scene " + PlayerPrefs.GetString("last"));
+//		Debug.Log ("Scene name: " + SceneManager.GetActiveScene ().name);
+		SceneManager.LoadScene (name);
+	}
+	public void OnDisable(){
+		PlayerPrefs.SetInt ("lastScene", SceneManager.GetActiveScene ().buildIndex);
+		//Debug.Log ("current scene" + PlayerPrefs.GetInt ("LastScene"));
 	}
 }

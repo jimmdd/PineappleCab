@@ -9,6 +9,7 @@ TagManager:
   - left_sign
   - up_sign
   - right_sign
+  - die
   layers:
   - Default
   - TransparentFX

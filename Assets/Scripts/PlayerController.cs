@@ -109,11 +109,7 @@ public class PlayerController : MonoBehaviour
 		// Reset the damaged flag.
 		damaged = false;
 	}
-
-	//Scene Manager
-	void loadScene(string name){
-		SceneManager.LoadScene (name);
-	}
+		
 
 	//when enter the intersection, if in intersection, then turn will turn 90 degree angle in either left or right
 	void OnTriggerEnter(Collider other) {
@@ -129,7 +125,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if (other.tag == "die"){
 			//TO-DO CHANGE THE SCENE TO GAME OVER
-			loadScene("Gameover");
+			GameObject.Find("GameManager").GetComponent<GameManager>().LoadScene("Gameover");
 		}
 	}
 
