@@ -21,4 +21,9 @@ public class GameManager : MonoBehaviour {
 		UnityEditor.EditorApplication.isPlaying = false;
 		#endif
 	}
+	public void RetryGame(){
+	}
+	public void BackToMenu(){
+		SceneManager.LoadScene ("Start");
+	}
 }
