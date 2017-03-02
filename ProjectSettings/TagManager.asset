@@ -10,6 +10,8 @@ TagManager:
   - up_sign
   - right_sign
   - die
+  - speedup
+  - nextLevel
   layers:
   - Default
   - TransparentFX

@@ -120,12 +120,17 @@ public class PlayerController : MonoBehaviour
 		}
 		if (other.tag == "road") {
 			isIntersec = false;
-			Debug.Log("ROAD!");
 			turn_Count = 0;//reset turn count
 		}
 		if (other.tag == "die"){
 			//TO-DO CHANGE THE SCENE TO GAME OVER
 			GameObject.Find("GameManager").GetComponent<GameManager>().LoadScene("Gameover");
+		}
+		if (other.tag == "nextLevel") {
+			GameObject.Find ("GameManager").GetComponent<GameManager> ().LoadNextLevel ();
+		}
+		if (other.tag == "speedUp") {
+			MoveSpeed += 10;
 		}
 	}
 

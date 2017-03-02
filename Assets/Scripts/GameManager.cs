@@ -47,8 +47,17 @@ public class GameManager : MonoBehaviour {
 //		Debug.Log ("Scene name: " + SceneManager.GetActiveScene ().name);
 		SceneManager.LoadScene (name);
 	}
+	public void LoadScene(int levelIndex){
+		PlayerPrefs.SetInt ("lastScene", SceneManager.GetActiveScene ().buildIndex + 1);
+		PlayerPrefs.SetString ("last", SceneManager.GetActiveScene ().name);
+		SceneManager.LoadScene (levelIndex);
+	}
 	public void OnDisable(){
 		PlayerPrefs.SetInt ("lastScene", SceneManager.GetActiveScene ().buildIndex);
 		//Debug.Log ("current scene" + PlayerPrefs.GetInt ("LastScene"));
+	}
+	public void LoadNextLevel(){
+		//To-DO load next build Index
+		LoadScene (PlayerPrefs.GetInt("lastScene")+1);
 	}
 }
