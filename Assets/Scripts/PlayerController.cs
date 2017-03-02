@@ -89,18 +89,16 @@ public class PlayerController : MonoBehaviour
 			upSign.SetActive (true);
 		}
 
-	}
-
-	//SHOW DAMAGE AND FLASH THE SCREEN WHEN CRASH TO THE CARS 
-	void damage(){
 		// If the player has just been damaged...
-		if (damaged) {
+		if(damaged)
+		{
 			// ... set the colour of the damageImage to the flash colour.
 			damageImage.color = flashColour;
 			//playerAudio [1].Play ();
 		}
 		// Otherwise...
-		else {
+		else
+		{
 			// ... transition the colour back to clear.
 			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 
@@ -108,7 +106,9 @@ public class PlayerController : MonoBehaviour
 
 		// Reset the damaged flag.
 		damaged = false;
+
 	}
+
 		
 
 	//when enter the intersection, if in intersection, then turn will turn 90 degree angle in either left or right
@@ -131,6 +131,9 @@ public class PlayerController : MonoBehaviour
 		}
 		if (other.tag == "speedUp") {
 			MoveSpeed += 10;
+		}
+		if (other.tag == "car") {
+			damaged = true;
 		}
 	}
 

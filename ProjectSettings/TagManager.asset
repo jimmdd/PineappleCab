@@ -12,6 +12,7 @@ TagManager:
   - die
   - speedup
   - nextLevel
+  - car
   layers:
   - Default
   - TransparentFX
