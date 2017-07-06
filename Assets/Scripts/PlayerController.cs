@@ -21,10 +21,13 @@ public class PlayerController : MonoBehaviour
 	public GameObject leftSign;
 	public GameObject rightSign;
 	public GameObject upSign;
+	public int playerScore = 0;
+	public int scoreValue = 10;
 
 	void Start(){
 		leftSign.SetActive (false);
 		rightSign.SetActive (false);
+		upSign.SetActive (false);
 	}
 
 	/* To-Do 
@@ -114,9 +117,8 @@ public class PlayerController : MonoBehaviour
 	//when enter the intersection, if in intersection, then turn will turn 90 degree angle in either left or right
 	void OnTriggerEnter(Collider other) {
 		if(other.tag=="intersec"){
-			Debug.Log ("intersection!");
+			ScoreManager.score += scoreValue;
 			isIntersec = true;
-			//TO-DO
 		}
 		if (other.tag == "road") {
 			isIntersec = false;
@@ -124,6 +126,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if (other.tag == "die"){
 			//TO-DO CHANGE THE SCENE TO GAME OVER
+			damaged = true;
 			GameObject.Find("GameManager").GetComponent<GameManager>().LoadScene("Gameover");
 		}
 		if (other.tag == "nextLevel") {
@@ -134,6 +137,18 @@ public class PlayerController : MonoBehaviour
 		}
 		if (other.tag == "car") {
 			damaged = true;
+		}
+
+		//pick up passager
+		if (other.tag == "good") {
+			Debug.Log ("picked a good person");
+			ScoreManager.score += scoreValue;
+			Destroy(other.transform.parent.gameObject,0.3f);
+		}
+		if (other.tag == "bad") {
+			Debug.Log ("picked a bad person");
+			ScoreManager.score -= scoreValue;
+			Destroy (other.transform.parent.gameObject, 0.3f);
 		}
 	}
 
